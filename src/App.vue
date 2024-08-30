@@ -1,18 +1,22 @@
 <script setup>
 import JSONLab from './components/JSONLab.vue'
 import BHeader from './components/BHeader.vue'
-import LibraryRegistrationForm from './components/LibraryRegistrationForm.vue'
+//import LibraryRegistrationForm from './components/LibraryRegistrationForm.vue'
+import HomeView from './views/HomeView.vue'
 </script>
 
 <template>
-  <header>
-    <BHeader />
-  </header>
+  <div class="main-container">
+    <header>
+      <BHeader />
+    </header>
 
-  <main>
-    <LibraryRegistrationForm />
+    <main class="main-box">
+    <!--<LibraryRegistrationForm />-->
     <!-- <JSONLab /> -->
-  </main>
+      <router-view></router-view>
+    </main>
+  </div>
 </template>
 
 <style scoped>
@@ -20,7 +24,7 @@ import LibraryRegistrationForm from './components/LibraryRegistrationForm.vue'
   line-height: 1.5;
 }
 
-.logo 
+.logo {
   display: block;
   margin: 0 auto 2rem;
 }
@@ -42,4 +46,7 @@ import LibraryRegistrationForm from './components/LibraryRegistrationForm.vue'
     flex-wrap: wrap;
   }
 } */
+ .about{
+  text-align:center;
+ }
 </style>
