@@ -20,7 +20,7 @@ import LibraryRegistrationForm from './components/LibraryRegistrationForm.vue'
   line-height: 1.5;
 }
 
-.logo {
+.logo 
   display: block;
   margin: 0 auto 2rem;
 }
