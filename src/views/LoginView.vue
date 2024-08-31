@@ -56,7 +56,7 @@ import router from '../router/index'
 import { useAuth } from '../router/authenticate'
 
 const hardCodeUserName = 'zzx'
-const hardCodepassword = '123456'
+const hardCodepassword = '12345678'
 const { isAuthenticated } = useAuth()
 
 const formData = ref({
@@ -96,9 +96,6 @@ const validateName = (blur) => {
 }
 
 const validatePassword = (blur) => {
-  
-  
-
   if (formData.value.password.length < 8) {
     if (blur) errors.value.password = `Password must be at least 8 characters long.`
   } else {

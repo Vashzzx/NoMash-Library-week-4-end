@@ -37,13 +37,14 @@ router.beforeEach((to, from, next) => {
         }
         else{
             console.log("indexjs-Need login",isAuthenticated.value)
+            alert("Need login")
             next({ name: 'Login'});
 
         }
       
      
     } else {
-        
+
       next();
     }
   });
