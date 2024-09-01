@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import LoginView from '../views/LoginView.vue'
 import { useAuth } from './authenticate'
+import RatingView from '@/views/RatingView.vue'
+
 const { isAuthenticated } = useAuth()
 
 const routes = [
@@ -20,7 +22,13 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: LoginView
+  },
+  {
+    path: '/rating',
+    name: 'Rating',
+    component: RatingView
   }
+
 ]
 
 const router = createRouter({
