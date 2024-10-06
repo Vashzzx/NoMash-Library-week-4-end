@@ -11,6 +11,9 @@
           <router-link to="/rating" class="nav-link" active-class="active">Rating</router-link>
         </li>
         <li class="nav-item">
+          <router-link to="/manage" class="nav-link" active-class="active">Manage</router-link>
+        </li>
+        <li class="nav-item">
           <router-link to="/" class="nav-link" active-class="active" aria-current="page"
             >Register</router-link
           >
@@ -36,9 +39,9 @@
         <li class="nav-item">
           <router-link to="/booklist" class="nav-link" active-class="active">BookList</router-link>
         </li>
-        <!--<li class="nav-item">
-          <router-link to="/editBook" class="nav-link" active-class="active">EditBook</router-link>
-        </li>-->
+        <li class="nav-item">
+          <router-link to="/GetBookCount" class="nav-link" active-class="active">Get Book Count</router-link>
+        </li>
       </ul>
     </header>
   </div>
@@ -52,11 +55,12 @@ const { isAuthenticated } = useAuth()
 
 
 const logout = () => {
-  isAuthenticated.value = false
+  isAuthenticated.value = false;
+  localStorage.removeItem("userInfo")
   alert("Logout success")
   router.push({name:'Home'})
- }
-
+ 
+}
 const auth = getAuth()
 const firebaseLogout = () =>{
     signOut(auth).then(() =>{

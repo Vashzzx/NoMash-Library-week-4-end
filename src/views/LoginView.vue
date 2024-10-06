@@ -1,54 +1,42 @@
 <template>
-    <!-- 🗄️ W3. Library Registration Form -->
-    <div class="container mt-5">
-      <div class="row">
-        <div class="col-md-8 offset-md-2">
-          <h1 class="text-center">🗄️ Login page</h1>
-          <form @submit.prevent="submitForm">
-            <div class="row mb-3 offset-md-4">
-              <div class="col-md-6 col-sm-6">
-                <label for="username" class="form-label">Username</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="username"
-                  @blur="() => validateName(true)"
-                  @input="() => validateName(false)"
-                  v-model="formData.username"
-                />
-                <div v-if="errors.username" class="text-danger">{{ errors.username }}</div>
-              </div>
-              
-  
-              
-            </div>
-            <div class="row mb-3 offset-md-4">
+  <!-- 🗄️ W3. Library Registration Form -->
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h1 class="text-center">🗄️ Login page</h1>
+        <form @submit.prevent="submitForm">
+          <div class="row mb-3 offset-md-4">
             <div class="col-md-6 col-sm-6">
-                <label for="password" class="form-label">Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  @blur="() => validatePassword(true)"
-                  @input="() => validatePassword(false)"
-                  v-model="formData.password"
-                />
-                <div v-if="errors.password" class="text-danger">{{ errors.password }}</div>
-              </div>
-              </div>
-           
-          
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary me-2">Submit</button>
-              <button type="button" class="btn btn-secondary" @click="clearForm">Clear</button>
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" @blur="() => validateName(true)"
+                @input="() => validateName(false)" v-model="formData.username" />
+              <div v-if="errors.username" class="text-danger">{{ errors.username }}</div>
             </div>
-          </form>
-        </div>
+
+
+
+          </div>
+          <div class="row mb-3 offset-md-4">
+            <div class="col-md-6 col-sm-6">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" @blur="() => validatePassword(true)"
+                @input="() => validatePassword(false)" v-model="formData.password" />
+              <div v-if="errors.password" class="text-danger">{{ errors.password }}</div>
+            </div>
+          </div>
+
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary me-2">Submit</button>
+            <button type="button" class="btn btn-secondary" @click="clearForm">Clear</button>
+          </div>
+        </form>
       </div>
     </div>
-  
-    
-  </template>
+  </div>
+
+
+</template>
 
 <script setup>
 import { ref } from 'vue'
@@ -64,21 +52,56 @@ const formData = ref({
   password: ''
 })
 
+function retrieveObject(key) {
+  var object = localStorage.getItem(key);
+  if (object) {
+    return JSON.parse(object);
+  }
+  return null;
+}
 //const submittedCards = ref([])
 
 const submitForm = () => {
+
   validateName(true)
   validatePassword(true)
-  
-  if (!errors.value.username 
-  && !errors.value.password 
-  && formData.value.username === hardCodeUserName 
-  && formData.value.password === hardCodepassword) {
-    alert("login success")
-    isAuthenticated.value = true
-    console.log("loginview", isAuthenticated.value)
-    router.push({name:'About'})
+
+  var info = retrieveObject("loginInfo");
+
+  for (let i = 0; i < info.length; i++) {
+    if (!errors.value.username
+      && !errors.value.password
+      && formData.value.username == info[i].username
+      && formData.value.password == info[i].password) {
+      localStorage.setItem("userInfo", JSON.stringify(info[i]))
+      alert("login success")
+      isAuthenticated.value = true
+      router.push({ name: 'About' })
+    }
+
   }
+
+  // const { username, password } = {};
+
+
+  // if (!errors.value.username
+  //   && !errors.value.password
+  //   && formData.value.username === hardCodeUserName
+  //   && formData.value.password === hardCodepassword) {
+  //   alert("login success")
+  //   isAuthenticated.value = true
+  //   router.push({ name: 'About' })
+  // } else if (!errors.value.username
+  //   && !errors.value.password
+  //   && formData.value.username === username
+  //   && formData.value.password === password) {
+  //   //   alert("login success")
+  //   // isAuthenticated.value = true
+  //   // router.push({ name: 'About' }
+
+  //   // )
+
+  // }
 }
 
 

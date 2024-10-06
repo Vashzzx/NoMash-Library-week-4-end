@@ -1,8 +1,13 @@
 <script setup>
+
 import JSONLab from './components/JSONLab.vue'
 import BHeader from './components/BHeader.vue'
 //import LibraryRegistrationForm from './components/LibraryRegistrationForm.vue'
 import HomeView from './views/HomeView.vue'
+
+
+var arr = [{ "username": 'zzx', "password": 12345678, "role": 1 },{ "username": 'lisi', "password": 12345678, "role": 2 }]
+localStorage.setItem("loginInfo", JSON.stringify(arr));
 </script>
 
 <template>
@@ -12,8 +17,8 @@ import HomeView from './views/HomeView.vue'
     </header>
 
     <main class="main-box">
-    <!--<LibraryRegistrationForm />-->
-    <!-- <JSONLab /> -->
+      <!--<LibraryRegistrationForm />-->
+      <!-- <JSONLab /> -->
       <router-view></router-view>
     </main>
   </div>
@@ -46,7 +51,7 @@ import HomeView from './views/HomeView.vue'
     flex-wrap: wrap;
   }
 } */
- .about{
-  text-align:center;
- }
+.about {
+  text-align: center;
+}
 </style>
