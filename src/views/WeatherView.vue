@@ -29,11 +29,11 @@ const temperature = ref('')
 
 const searchByCity = async() => {
   try {
-    const reponse = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${city.value}&appid=${apiKey}`)
+    const reponse = await axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${city.value}&appid=${apiKey}`)
     weatherData.value = reponse.data[0];
     const lat=reponse.data[0].lat;
     const lon=reponse.data[0].lon;
-    const url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
     await fetchWeatherData(url)
     // iconUrl.value = reponse.data ? `http://api.openweathermap.org/img/w/${reponse.data.weather[0].icon}.png` : null;
     // temperature.value = reponse.data ? Math.floor(reponse.data.main.temp - 273) : null
@@ -48,7 +48,7 @@ const fetchCurrentLocationWeather = async () => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(async (position) => {
       const { latitude, longitude } = position.coords;
-      const url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
       await fetchWeatherData(url)
     })
   }
@@ -58,7 +58,7 @@ const fetchWeatherData = async (url) => {
   try {
     const reponse = await axios.get(url)
     weatherData.value = reponse.data;
-    iconUrl.value = reponse.data ? `http://api.openweathermap.org/img/w/${reponse.data.weather[0].icon}.png` : null;
+    iconUrl.value = reponse.data ? `https://api.openweathermap.org/img/w/${reponse.data.weather[0].icon}.png` : null;
     temperature.value = reponse.data ? Math.floor(reponse.data.main.temp - 273) : null
   } catch (error) {
     console.log(error);
